@@ -7,4 +7,12 @@
   .full-width {
     width: 100%;
   }
+  .modal-card {
+    padding: 16px;
+  }
+  
+  mat-card-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
   

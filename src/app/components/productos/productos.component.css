@@ -35,3 +35,14 @@
 .custom-outline .mat-input-element {
     color: #333333; /* Color del texto */
 }
+
+.search-container {
+  display: flex;
+  gap: 20px; /* Espacio entre los campos de búsqueda */
+  margin-bottom: 20px;
+}
+
+.search-group {
+  display: flex;
+  flex-direction: column;
+}

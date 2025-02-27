@@ -1,5 +1,5 @@
-<h2 mat-dialog-title>Agregar Producto</h2>
-
+<h2 mat-dialog-title>{{ esEdicion ? '✏ Editar Producto' : '➕ Agregar Producto' }}</h2>
+<div style="height: 2px;"></div> 
 <mat-dialog-content class="modal-content">
   <form #productoForm="ngForm">
     <!-- Nombre -->
@@ -24,7 +24,7 @@
 
 <mat-dialog-actions align="end">
   <button mat-button (click)="cerrarModal()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="agregarProducto()" [disabled]="!productoForm.form.valid">Agregar</button>
+  <button mat-raised-button color="primary" (click)="guardarProducto()" [disabled]="!productoForm.form.valid">
+    {{ esEdicion ? 'Guardar Cambios' : 'Agregar' }}
+  </button>
 </mat-dialog-actions>
-
-

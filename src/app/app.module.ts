@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { ProductosComponent } from './components/productos/productos.component';
 import { ModalAgregarProductoComponent } from './components/modal-agregar-producto/modal-agregar-producto.component';
 
-// 🔹 Importar módulos de Angular Material
+//  Importar módulos de Angular Material
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -17,8 +17,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
-// 🔹 Importar el paginador personalizado
+//  Importar el paginador personalizado
 import { CustomPaginatorIntl } from './custom-paginator';
 
 @NgModule({
@@ -33,7 +34,7 @@ import { CustomPaginatorIntl } from './custom-paginator';
     HttpClientModule,
     BrowserAnimationsModule,
 
-    // 🔹 Angular Material
+    //  Angular Material
     MatTableModule,
     MatDialogModule,
     MatSnackBarModule,
@@ -41,10 +42,11 @@ import { CustomPaginatorIntl } from './custom-paginator';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
     MatPaginatorModule
   ],
   providers: [
-    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl } // 🔹 Agregado
+    { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl } //  Agregado
   ],
   bootstrap: [AppComponent]
 })

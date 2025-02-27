@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface Producto {
   id?: number;
@@ -31,5 +32,12 @@ export class ProductoService {
   
   buscarProducto(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  }
+  editarProducto(producto: Producto): Observable<Producto> {
+    return this.http.put<Producto>(`${this.apiUrl}/${producto.id}`, producto);
+  }
+  existeProducto(nombre: string): Observable<boolean> {
+    return this.http.get<{ existe: boolean }>(`${this.apiUrl}/existe/${encodeURIComponent(nombre)}`)
+      .pipe(map(response => response.existe));
   }
 }

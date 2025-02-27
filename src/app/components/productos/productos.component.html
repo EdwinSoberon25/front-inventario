@@ -1,63 +1,77 @@
 <div class="container">
-    <h2>📦 Gestión de Productos</h2>
-  
-    <!-- Búsqueda por ID -->
-    <mat-form-field appearance="fill" class="custom-outline">
-        <input matInput type="number" [(ngModel)]="idBuscado" placeholder="Ingrese el ID">
-    </mat-form-field>
-    <div class="button-group">
-      <button mat-raised-button color="primary" (click)="buscarProducto()">
-        🔍 Buscar
-      </button>
-      <button mat-raised-button color="warn" (click)="obtenerProductos()">
-        🔄 Ver Todos
-      </button>
-      <button mat-raised-button color="accent" (click)="abrirModalAgregar()">
-        ➕ Agregar Producto
-      </button>
-    </div>
-  
-    <!-- Tabla de productos -->
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      
-      <!-- ID -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let producto"> {{producto.id}} </td>
-      </ng-container>
-  
-      <!-- Nombre -->
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
-      </ng-container>
-  
-      <!-- Cantidad -->
-      <ng-container matColumnDef="cantidad">
-        <th mat-header-cell *matHeaderCellDef> Cantidad </th>
-        <td mat-cell *matCellDef="let producto"> {{producto.cantidad}} </td>
-      </ng-container>
-  
-      <!-- Precio -->
-      <ng-container matColumnDef="precio">
-        <th mat-header-cell *matHeaderCellDef> Precio </th>
-        <td mat-cell *matCellDef="let producto"> {{producto.precio | currency:'PEN'}} </td>
-      </ng-container>
-  
-      <!-- Acciones -->
-      <ng-container matColumnDef="acciones">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let producto">
-          <button mat-icon-button color="warn" (click)="eliminarProducto(producto.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-  
-      <!-- Header y Rows -->
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <h2>📦 Gestión de Productos</h2>
+
+  <div class="search-container">
+      <!-- 🔍 Búsqueda por ID -->
+      <div class="search-group">
+          <label for="idBuscado">🔍 Búsqueda por ID:</label>
+          <mat-form-field appearance="fill" class="custom-outline">
+              <input id="idBuscado" matInput type="number" [(ngModel)]="idBuscado" (ngModelChange)="buscarProducto()" placeholder="Ingrese el ID">
+          </mat-form-field>
+      </div>
+
+      <!-- 🔍 Búsqueda por Nombre -->
+      <div class="search-group">
+          <label for="nombreBuscado">🔍 Búsqueda por Nombre:</label>
+          <mat-form-field appearance="fill" class="custom-outline">
+              <input id="nombreBuscado" matInput type="text" [(ngModel)]="nombreBuscado" (ngModelChange)="buscarProducto()" placeholder="Ingrese el Nombre">
+          </mat-form-field>
+      </div>
   </div>
+
+  <div class="button-group">
+    <button mat-raised-button color="warn" (click)="obtenerProductos()">
+      🔄 Ver Todos
+    </button>
+    <button mat-raised-button color="accent" (click)="abrirModalAgregar()">
+      ➕ Agregar Producto
+    </button>
+  </div>
+
+  <!-- Tabla de productos -->
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let producto"> {{producto.id}} </td>
+    </ng-container>
+
+    <!-- Nombre -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
+    </ng-container>
+
+    <!-- Cantidad -->
+    <ng-container matColumnDef="cantidad">
+      <th mat-header-cell *matHeaderCellDef> Cantidad </th>
+      <td mat-cell *matCellDef="let producto"> {{producto.cantidad}} </td>
+    </ng-container>
+
+    <!-- Precio -->
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let producto"> {{producto.precio | currency:'PEN'}} </td>
+    </ng-container>
+
+    <!-- Acciones -->
+    <ng-container matColumnDef="acciones">
+      <th mat-header-cell *matHeaderCellDef> Acciones </th>
+      <td mat-cell *matCellDef="let producto">
+        <button mat-icon-button color="accent" (click)="abrirModalEditar(producto)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="eliminarProducto(producto.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Header y Rows -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
   
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
